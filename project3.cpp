@@ -1066,7 +1066,7 @@ int main(int argc, char** argv) {
   
         
             cin >> command;
-            cout << command; 
+            
             
             
             if (command.at(0) == '#') {
