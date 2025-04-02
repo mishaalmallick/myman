@@ -1060,7 +1060,7 @@ int main() {
     string command;
     
     do {
-        cout << "% ";
+        
         
         if (!(cin >> command)) {
             cin.clear();  // Clear any errors
