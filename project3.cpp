@@ -39,6 +39,12 @@ void create(){
     if(it == database.end()){ // if table doesn't exist
         cin >> N; // total amount columns
         Table new_table; //create new table
+        database.emplace(table_name, std::move(new_table)); // add the table!
+        database[table_name].total_Table.reserve(N);
+        database[table_name].col_types.reserve(N);
+        database[table_name].col_names.reserve(N);
+        database[table_name].column_numbers.reserve(N);
+        database[table_name].hash.reserve(N);
         for(size_t i = 0; i < N; i++){
             cin >> col_type; 
             new_table.col_types.push_back(col_type); // each type, in order, for column types
@@ -54,7 +60,7 @@ void create(){
             cout << new_table.col_names[i] << " "; // list columns
         }
         cout << "created" << "\n";
-        database.emplace(table_name, std::move(new_table)); // add the table!
+
     } else {
         cout << "Error during CREATE: Cannot create already existing table " <<  table_name << "\n";
         return;
@@ -1048,12 +1054,6 @@ void get_opt(int argc, char**argv) {
 }
 
 
-#include <iostream>
-#include <string>
-#include <limits> 
-
-using namespace std;
-
 int main(int argc, char** argv) {
         std::ios_base::sync_with_stdio(false);  
         get_opt(argc, argv);
@@ -1064,9 +1064,8 @@ int main(int argc, char** argv) {
         do {
             string temp;
   
-        
+            cout << "% ";
             cin >> command;
-            
             
             
             if (command.at(0) == '#') {
@@ -1116,6 +1115,5 @@ int main(int argc, char** argv) {
         
         return 0;
     }
-
     
 
