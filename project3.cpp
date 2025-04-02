@@ -1054,39 +1054,68 @@ void get_opt(int argc, char**argv) {
 
 using namespace std;
 
-int main() {
-    ios_base::sync_with_stdio(false);  
-
-    string command;
-    
-    do {
+int main(int argc, char** argv) {
+        std::ios_base::sync_with_stdio(false);  
+        get_opt(argc, argv);
+     
         
+        string command;
         
-        if (!(cin >> command)) {
-            cin.clear();  // Clear any errors
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Remove leftover input
-            continue;
-        }
-
-        cout << "DEBUG: Command read: [" << command << "]" << endl;
-
-        if (command.at(0) == '#') {
+        do {
             string temp;
-            getline(cin, temp);
-            cout << "DEBUG: Comment ignored." << endl;
-        } 
-        else if (command == "QUIT") {
-            break;
-        } 
-        else {
-            cout << "DEBUG: Unhandled command: [" << command << "]" << endl;
+  
+        
+            cin >> command;
+            cout << command; 
+            
+            
+            if (command.at(0) == '#') {
+                getline(cin, temp);
+            }
+            
+            else if (command == "CREATE") {
+                create();
+            }
+            
+
+            else if (command == "INSERT") {
+         
+                cin >> temp;
+                insert();
+            }
+            
+            else if (command == "REMOVE") {
+                cin >> temp;
+                removeTable(temp);
+            }
+            else if (command == "GENERATE") {
+                cin >> temp; 
+                generate();
+                
+            }
+            else if (command == "PRINT") {
+                cin >> temp;
+                print();
+            }
+            
+            else if (command == "DELETE") {
+        
+                cin >> temp;
+                delete_func();
+            }
+  
+            else if (command == "JOIN") {
+                join();
+            }
+         } while (command != "QUIT");
+    
+        if (command == "QUIT") {
+            quit();
         }
-
-    } while (true);
-
-    cout << "Exiting program." << endl;
-    return 0;
-}
+    
+        
+        return 0;
+    }
 
     
 
