@@ -95,7 +95,8 @@ void insert() {
     string table_name;
     size_t N;
     
-    cin >> table_name; // Read table name
+    cin >> table_name; 
+    cin >> table_name;// Read table name
     cin >> N; // Read the number of rows
 
     auto it = database.find(table_name);
