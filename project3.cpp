@@ -94,7 +94,8 @@ void insert(){
     size_t N; 
     string ROWS;
 
-    cin >> space >> table_name; // get table name
+    cin >> space;
+    cin >> table_name;// get table name
     cin >> N; // get number of rows 
     cin >> ROWS; 
     
