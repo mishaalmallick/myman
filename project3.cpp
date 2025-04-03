@@ -52,6 +52,7 @@ void create(){
         }
         for(size_t i = 0; i < N; i++){
             cin >> col_name; // column numbers and there indices
+            cout << col_name << endl;
             new_table.column_numbers[col_name] = i; // indices 
             new_table.col_names.push_back(col_name); // col names 
         }
@@ -692,10 +693,8 @@ void delete_func(){
     cin >> col_name;
     cin >> operation;
     auto it = database.find(tablename);
-    cout << "yayz!" << endl;
-    for(size_t i = 0; i < database[tablename].col_names.size(); i++){
-        cout << database[tablename].col_names[i] << endl;
-    }
+    
+  
 
     if(it == database.end()){
         cout << "Error during DELETE: Cannot create already existing table " << tablename << "\n";
