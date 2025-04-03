@@ -38,6 +38,7 @@ void create(){
     auto it = database.find(table_name); // see if table exists 
     if(it == database.end()){ // if table doesn't exist
         cin >> N; // total amount columns
+        
         Table new_table; //create new table
         database.emplace(table_name, std::move(new_table)); // add the table!
         database[table_name].total_Table.reserve(N);
@@ -101,46 +102,13 @@ void insert(){
     cin >> ROWS;
     auto it = database.find(table_name);
     if(it != database.end()){
-              size_t K = database[table_name].total_Table.size(); 
+        size_t K = database[table_name].total_Table.size(); 
+        cout << K << endl;
+        cout << N << endl; 
          // current amount of rows; 
-        for(size_t i = 0; i < N; i++){ // until the amount of rows 
-            vector<Field> total_added; // row 
-            total_added.reserve(N);
-            for(size_t j = 0; j < database[table_name].col_names.size(); j++){ // until amount of columns in the table (guaranteed)
-                if(database[table_name].col_types[j] == "string"){ // if string 
-                    string value;
-                    cin >> value; 
-                    Field new_val(value);
-                    total_added.push_back(new_val); // push back val 
-                }
-                if(database[table_name].col_types[j] == "double"){
-                    double value;
-                    cin >> value; 
-                    Field new_val(value);
-                    total_added.push_back(new_val);
-                }
-                if(database[table_name].col_types[j] == "int"){
-                    int value;
-                    cin >> value; 
-                    Field new_val(value);
-                    total_added.push_back(new_val);
-                }
-                if(database[table_name].col_types[j] == "bool"){
-                    bool value;
-                    cin >> value; 
-                    Field new_val(value);
-                    total_added.push_back(new_val);
-                }
-            }
-            database[table_name].total_Table.push_back(total_added);
-           
-            
-        }
-        cout << "Added " << N << " rows to " << table_name << " from position " <<  K << " to " << K + N - 1 << "\n";
-    }
- 
+       
 
-}
+    }
 
 void print(){
     string table_name;
