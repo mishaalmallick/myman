@@ -164,6 +164,7 @@ void print(){
     
     cin >> table_name; // get in table name 
     cin >> N; // number of columns 
+    cin >> ROWS; 
     auto it = database.find(table_name);
     bool bst = false;
     bool hash = false;
