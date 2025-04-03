@@ -19,8 +19,8 @@ class Table {
     vector<string> col_types; 
     unordered_map<Field, vector<size_t>> hash;
     map<Field, vector<size_t>, less<Field>> bst;
-    string bstcol = " ";
-    string hashcol = " "; 
+    string bstcol;
+    string hashcol; 
     Table() {};
 };
 
@@ -34,12 +34,10 @@ void create(){
     string col_type; 
 
 
-    cin >> table_name;
-   
+    cin >> table_name; // take in table name 
     auto it = database.find(table_name); // see if table exists 
     if(it == database.end()){ // if table doesn't exist
         cin >> N; // total amount columns
-        
         Table new_table; //create new table
         database.emplace(table_name, std::move(new_table)); // add the table!
         database[table_name].total_Table.reserve(N);
@@ -65,7 +63,7 @@ void create(){
 
     } else {
         cout << "Error during CREATE: Cannot create already existing table " <<  table_name << "\n";
-        exit(0);
+        return;
     }
 }
 
@@ -87,61 +85,63 @@ void removeTable(const string &TableName){
         cout << "Table " << TableName << " removed" << "\n";
     } else {
         cout << "Error during REMOVE: " << TableName << " does not name a table in the database " << "\n";
-        return;
     }
 }
 
-void insert() {
-    string table_name;
+void insert(){
+    string table_name; 
+    size_t N; 
     string ROWS;
-    size_t N;
+
+    cin >> table_name; // get table name
+    cin >> N; // get number of rows 
+    cin >> ROWS; 
     
-    cin >> table_name; 
-    cin >> N; // Read the number of rows
-    cin >> ROWS;
 
     auto it = database.find(table_name);
-    if (it != database.end()) {
-        size_t K = database[table_name].total_Table.size();
-        cout << K << endl;
-        cout << N << endl;
-
-        for (size_t i = 0; i < N; i++) { // Process N rows
-            vector<Field> total_added; 
-            total_added.reserve(database[table_name].col_names.size()); // Corrected reserve size
-
-            for (size_t j = 0; j < database[table_name].col_names.size(); j++) {
-                if (database[table_name].col_types[j] == "string") {
+    if(it != database.end()){ // if table exists 
+        size_t K = database[table_name].total_Table.size(); 
+         // current amount of rows; 
+        for(size_t i = 0; i < N; i++){ // until the amount of rows 
+            vector<Field> total_added; // row 
+            total_added.reserve(N);
+            for(size_t j = 0; j < database[table_name].col_names.size(); j++){ // until amount of columns in the table (guaranteed)
+                if(database[table_name].col_types[j] == "string"){ // if string 
                     string value;
-                    cin >> ws; // Clear whitespace
-                    getline(cin, value); // Read full string
-                    total_added.emplace_back(value);
-                } else if (database[table_name].col_types[j] == "double") {
+                    cin >> value; 
+                    Field new_val(value);
+                    total_added.push_back(new_val); // push back val 
+                }
+                if(database[table_name].col_types[j] == "double"){
                     double value;
-                    cin >> value;
-                    total_added.emplace_back(value);
-                } else if (database[table_name].col_types[j] == "int") {
+                    cin >> value; 
+                    Field new_val(value);
+                    total_added.push_back(new_val);
+                }
+                if(database[table_name].col_types[j] == "int"){
                     int value;
-                    cin >> value;
-                    total_added.emplace_back(value);
-                } else if (database[table_name].col_types[j] == "bool") {
+                    cin >> value; 
+                    Field new_val(value);
+                    total_added.push_back(new_val);
+                }
+                if(database[table_name].col_types[j] == "bool"){
                     bool value;
-                    cin >> value;
-                    total_added.emplace_back(value);
+                    cin >> value; 
+                    Field new_val(value);
+                    total_added.push_back(new_val);
                 }
             }
             database[table_name].total_Table.push_back(total_added);
+           
+            
         }
-
-        cout << "Added " << N << " rows to " << table_name << " from position " << K << " to " << K + N - 1 << "\n";
+        cout << "Added " << N << " rows to " << table_name << " from position " <<  K << " to " << K + N - 1 << "\n";
+  
     } else {
-        cout << "Error during INSERT: " << table_name << " does not name a table in the database.\n";
+        cout << "Error during INSERT: " << table_name << " does not name a table in the database " << "\n";
         exit(0);
     }
 }
-
-
-    
 
 void print(){
     string table_name;
@@ -166,13 +166,12 @@ void print(){
     
     cin >> table_name; // get in table name 
     cin >> N; // number of columns 
-
     auto it = database.find(table_name);
     bool bst = false;
     bool hash = false;
     size_t total = 0; 
 
-    
+
 
 
 
@@ -693,9 +692,6 @@ void delete_func(){
     cin >> col_name;
     cin >> operation;
     auto it = database.find(tablename);
-    
-  
-
     if(it == database.end()){
         cout << "Error during DELETE: Cannot create already existing table " << tablename << "\n";
         return; 
@@ -1083,8 +1079,8 @@ int main(int argc, char** argv) {
             
 
             else if (command == "INSERT") {
-                 cin >> temp;
-           
+         
+                cin >> temp;
                 insert();
             }
             
@@ -1098,7 +1094,7 @@ int main(int argc, char** argv) {
                 
             }
             else if (command == "PRINT") {
-                 cin >> temp;
+                cin >> temp;
                 print();
             }
             
@@ -1121,3 +1117,4 @@ int main(int argc, char** argv) {
         return 0;
     }
     
+
