@@ -98,6 +98,8 @@ void insert(){
     cin >> again; // get table name
     cin >> table_name;
     cout << table_name << endl;
+    cin >> N;
+    cin >> ROWS;
  
 
 }
