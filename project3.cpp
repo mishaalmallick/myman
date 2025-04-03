@@ -93,6 +93,7 @@ void removeTable(const string &TableName){
 
 void insert() {
     string table_name;
+    string ROWS;
     size_t N;
     
     cin >> table_name; 
