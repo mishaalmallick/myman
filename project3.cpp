@@ -96,8 +96,6 @@ void insert() {
     size_t N;
     
     cin >> table_name; 
-    cin >> table_name;// Read table name
-    cout << table_name << endl;
     cin >> N; // Read the number of rows
 
     auto it = database.find(table_name);
