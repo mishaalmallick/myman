@@ -35,7 +35,7 @@ void create(){
 
 
     cin >> table_name;
-    cin >> table_name;// take in table name 
+   
     auto it = database.find(table_name); // see if table exists 
     if(it == database.end()){ // if table doesn't exist
         cin >> N; // total amount columns
