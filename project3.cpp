@@ -81,8 +81,7 @@ int main(int argc, char** argv) {
          
                 cin >> temp;
                 insert();
-                cin >> temp;
-                cout << temp; 
+                
                     
                 
                 
