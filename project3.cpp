@@ -1068,7 +1068,7 @@ int main(int argc, char** argv) {
   
             cout << "% ";
             cin >> command;
-            cout << command; 
+            
             
             
             if (command.at(0) == '#') {
@@ -1084,6 +1084,9 @@ int main(int argc, char** argv) {
          
                 cin >> temp;
                 insert();
+                cin >> temp; 
+                cout << temp; 
+                
             }
             
             else if (command == "REMOVE") {
@@ -1109,6 +1112,7 @@ int main(int argc, char** argv) {
             else if (command == "JOIN") {
                 join();
             }
+            
          } while (command != "QUIT");
     
         if (command == "QUIT") {
