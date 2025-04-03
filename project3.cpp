@@ -53,8 +53,10 @@ void join();
 
 int main(int argc, char** argv) {
         std::ios_base::sync_with_stdio(false);  
-        get_opt(argc, argv);
-     
+       
+        cin >> boolalpha;
+        cout << boolalpha;
+         get_opt(argc, argv);
         
         string command;
         
