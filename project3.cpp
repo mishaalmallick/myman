@@ -26,6 +26,71 @@ class Table {
 
 bool quietMode = false;
 unordered_map<string, Table> database; //total Tables 
+int main(int argc, char** argv) {
+        std::ios_base::sync_with_stdio(false);  
+        get_opt(argc, argv);
+     
+        
+        string command;
+        
+        do {
+            string temp;
+  
+            cout << "% ";
+            cin >> command;
+            
+            
+            
+            if (command.at(0) == '#') {
+                getline(cin, temp);
+            }
+            
+            else if (command == "CREATE") {
+                create();
+            }
+            
+
+            else if (command == "INSERT") {
+         
+                cin >> temp;
+                insert();
+                
+                
+            }
+            
+            else if (command == "REMOVE") {
+                cin >> temp;
+                removeTable(temp);
+            }
+            else if (command == "GENERATE") {
+                cin >> temp; 
+                generate();
+                
+            }
+            else if (command == "PRINT") {
+                cin >> temp;
+                print();
+            }
+            
+            else if (command == "DELETE") {
+        
+                cin >> temp;
+                delete_func();
+            }
+  
+            else if (command == "JOIN") {
+                join();
+            }
+            
+         } while (command != "QUIT");
+    
+        if (command == "QUIT") {
+            quit();
+        }
+    
+        
+        return 0;
+    }
 
 void create(){
     string table_name;
@@ -1056,71 +1121,6 @@ void get_opt(int argc, char**argv) {
 }
 
 
-int main(int argc, char** argv) {
-        std::ios_base::sync_with_stdio(false);  
-        get_opt(argc, argv);
-     
-        
-        string command;
-        
-        do {
-            string temp;
-  
-            cout << "% ";
-            cin >> command;
-            
-            
-            
-            if (command.at(0) == '#') {
-                getline(cin, temp);
-            }
-            
-            else if (command == "CREATE") {
-                create();
-            }
-            
 
-            else if (command == "INSERT") {
-         
-                cin >> temp;
-                insert();
-                cin >> temp; 
-                cout << temp; 
-                
-            }
-            
-            else if (command == "REMOVE") {
-                cin >> temp;
-                removeTable(temp);
-            }
-            else if (command == "GENERATE") {
-                cin >> temp; 
-                generate();
-                
-            }
-            else if (command == "PRINT") {
-                cin >> temp;
-                print();
-            }
-            
-            else if (command == "DELETE") {
-        
-                cin >> temp;
-                delete_func();
-            }
-  
-            else if (command == "JOIN") {
-                join();
-            }
-            
-         } while (command != "QUIT");
-    
-        if (command == "QUIT") {
-            quit();
-        }
-    
-        
-        return 0;
-    }
     
 
