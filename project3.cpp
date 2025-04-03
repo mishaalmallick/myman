@@ -692,6 +692,7 @@ void delete_func(){
     cin >> col_name;
     cin >> operation;
     auto it = database.find(tablename);
+    cout << "yayz!" << endl;
     for(size_t i = 0; i < database[tablename].col_names.size(); i++){
         cout << database[tablename].col_names[i] << endl;
     }
