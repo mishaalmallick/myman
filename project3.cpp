@@ -1082,7 +1082,7 @@ int main(int argc, char** argv) {
             
 
             else if (command == "INSERT") {
-         
+                 cin >> temp;
            
                 insert();
             }
@@ -1097,7 +1097,7 @@ int main(int argc, char** argv) {
                 
             }
             else if (command == "PRINT") {
-     
+                 cin >> temp;
                 print();
             }
             
