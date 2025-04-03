@@ -39,24 +39,27 @@ void create(){
     if(it == database.end()){ // if table doesn't exist
         cin >> N; // total amount columns
         Table new_table; //create new table
-
+        database.emplace(table_name, std::move(new_table)); // add the table!
+        database[table_name].total_Table.reserve(N);
+        database[table_name].col_types.reserve(N);
+        database[table_name].col_names.reserve(N);
+        database[table_name].column_numbers.reserve(N);
+        database[table_name].hash.reserve(N);
         for(size_t i = 0; i < N; i++){
             cin >> col_type; 
-            new_table.col_types.push_back(col_type); // each type, in order, for column types
+            database[table_name].col_types.push_back(col_type); // each type, in order, for column types
 
         }
         for(size_t i = 0; i < N; i++){
             cin >> col_name; // column numbers and there indices
-            new_table.column_numbers[col_name] = i; // indices 
-            new_table.col_names.push_back(col_name); // col names 
+            database[table_name].column_numbers[col_name] = i; // indices 
+            database[table_name].col_names.push_back(col_name); // col names 
         }
         cout << "New table " << table_name << " with column(s) ";
         for(size_t i = 0; i < N; i++){
-            cout << new_table.col_names[i] << " "; // list columns
+            cout << database[table_name].col_names[i] << " "; // list columns
         }
         cout << "created" << "\n";
-        database.emplace(table_name, std::move(new_table)); // add the table!
-
 
     } else {
         cout << "Error during CREATE: Cannot create already existing table " <<  table_name << "\n";
