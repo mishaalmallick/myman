@@ -97,6 +97,7 @@ void insert() {
     
     cin >> table_name; 
     cin >> table_name;// Read table name
+    cout << table_name << endl;
     cin >> N; // Read the number of rows
 
     auto it = database.find(table_name);
@@ -135,6 +136,7 @@ void insert() {
         cout << "Added " << N << " rows to " << table_name << " from position " << K << " to " << K + N - 1 << "\n";
     } else {
         cout << "Error during INSERT: " << table_name << " does not name a table in the database.\n";
+        exit(0);
     }
 }
 
