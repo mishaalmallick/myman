@@ -91,11 +91,12 @@ void removeTable(const string &TableName){
 
 void insert(){
     string table_name; 
+    string again;
     size_t N; 
     string ROWS;
 
-    cin >> table_name; // get table name
-    cout << table_name << "x 3 " << endl;
+    cin >> table_name >> again; // get table name
+    cout << again << "x 3 " << endl;
     cin >> N; // get number of rows 
     cin >> ROWS; 
     
