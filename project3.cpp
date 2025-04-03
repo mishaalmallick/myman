@@ -106,7 +106,7 @@ void insert(){
         cout << K << endl;
         cout << N << endl; 
          // current amount of rows; 
-       
+    }
 
     }
 
