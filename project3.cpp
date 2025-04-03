@@ -1068,6 +1068,7 @@ int main(int argc, char** argv) {
   
             cout << "% ";
             cin >> command;
+            cout << command; 
             
             
             if (command.at(0) == '#') {
