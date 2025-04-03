@@ -93,6 +93,7 @@ void insert(){
     string table_name; 
     size_t N; 
     string ROWS;
+    string again;
 
     cin >> table_name; // get table name
     cin >> again >> endl;
