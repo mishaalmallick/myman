@@ -1028,15 +1028,16 @@ void join() {
                         cout << database[tablename1].total_Table[row1][col_nums_keep_track[j]] << " ";
                     }
                     
-                    total++;
+                    
                 } else {
                     if(!quietMode){
                         cout << database[tablename2].total_Table[row2][col_nums_keep_track[j]] << " ";
                     }
                   
-                    total++;
+                    
                 }
             }
+            total++;
             if(!quietMode){
                 cout << "\n";
             }
