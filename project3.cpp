@@ -90,25 +90,54 @@ void removeTable(const string &TableName){
     }
 }
 
-void insert(){
-    string table_name; 
-    size_t N; 
-    string ROWS;
-    string again;
+void insert() {
+    string table_name;
+    size_t N;
+    
+    cin >> table_name; // Read table name
+    cin >> N; // Read the number of rows
 
-    cin >> again; // get table name
-    cin >> table_name;
-    cin >> N;
-    cin >> ROWS;
     auto it = database.find(table_name);
-    if(it != database.end()){
-        size_t K = database[table_name].total_Table.size(); 
+    if (it != database.end()) {
+        size_t K = database[table_name].total_Table.size();
         cout << K << endl;
-        cout << N << endl; 
-         // current amount of rows; 
-    }
+        cout << N << endl;
 
+        for (size_t i = 0; i < N; i++) { // Process N rows
+            vector<Field> total_added; 
+            total_added.reserve(database[table_name].col_names.size()); // Corrected reserve size
+
+            for (size_t j = 0; j < database[table_name].col_names.size(); j++) {
+                if (database[table_name].col_types[j] == "string") {
+                    string value;
+                    cin >> ws; // Clear whitespace
+                    getline(cin, value); // Read full string
+                    total_added.emplace_back(value);
+                } else if (database[table_name].col_types[j] == "double") {
+                    double value;
+                    cin >> value;
+                    total_added.emplace_back(value);
+                } else if (database[table_name].col_types[j] == "int") {
+                    int value;
+                    cin >> value;
+                    total_added.emplace_back(value);
+                } else if (database[table_name].col_types[j] == "bool") {
+                    bool value;
+                    cin >> value;
+                    total_added.emplace_back(value);
+                }
+            }
+            database[table_name].total_Table.push_back(total_added);
+        }
+
+        cout << "Added " << N << " rows to " << table_name << " from position " << K << " to " << K + N - 1 << "\n";
+    } else {
+        cout << "Error during INSERT: " << table_name << " does not name a table in the database.\n";
     }
+}
+
+
+    
 
 void print(){
     string table_name;
