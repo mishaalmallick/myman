@@ -65,7 +65,7 @@ void create(){
 
     } else {
         cout << "Error during CREATE: Cannot create already existing table " <<  table_name << "\n";
-        return;
+        exit(0);
     }
 }
 
