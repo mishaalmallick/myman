@@ -97,9 +97,12 @@ void insert(){
 
     cin >> again; // get table name
     cin >> table_name;
-    cout << table_name << endl;
     cin >> N;
     cin >> ROWS;
+    auto it = database.find(table_name);
+    if(it != database.end()){
+        cout << "Yay!" << endl;
+    }
  
 
 }
