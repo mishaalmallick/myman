@@ -19,8 +19,8 @@ class Table {
     vector<string> col_types; 
     unordered_map<Field, vector<size_t>> hash;
     map<Field, vector<size_t>, less<Field>> bst;
-    string bstcol;
-    string hashcol; 
+    string bstcol = " ";
+    string hashcol = " "; 
     Table() {};
 };
 
@@ -85,67 +85,25 @@ void removeTable(const string &TableName){
         cout << "Table " << TableName << " removed" << "\n";
     } else {
         cout << "Error during REMOVE: " << TableName << " does not name a table in the database " << "\n";
+        return;
     }
 }
 
 void insert(){
-    string space; 
     string table_name; 
     size_t N; 
     string ROWS;
 
-    cin >> space;
-    cin >> table_name;// get table name
+    cin >> table_name; // get table name
+    cout << table_name << "x 3 " << endl;
     cin >> N; // get number of rows 
     cin >> ROWS; 
     
 
-    auto it = database.find(table_name);
-    if(it != database.end()){ // if table exists 
-        size_t K = database[table_name].total_Table.size(); 
-         // current amount of rows; 
-        for(size_t i = 0; i < N; i++){ // until the amount of rows 
-            vector<Field> total_added; // row 
-            total_added.reserve(N);
-            for(size_t j = 0; j < database[table_name].col_names.size(); j++){ // until amount of columns in the table (guaranteed)
-                if(database[table_name].col_types[j] == "string"){ // if string 
-                    string value;
-                    cin >> value; 
-                    Field new_val(value);
-                    total_added.push_back(new_val); // push back val 
-                }
-                if(database[table_name].col_types[j] == "double"){
-                    double value;
-                    cin >> value; 
-                    Field new_val(value);
-                    total_added.push_back(new_val);
-                }
-                if(database[table_name].col_types[j] == "int"){
-                    int value;
-                    cin >> value; 
-                    Field new_val(value);
-                    total_added.push_back(new_val);
-                }
-                if(database[table_name].col_types[j] == "bool"){
-                    bool value;
-                    cin >> value; 
-                    Field new_val(value);
-                    total_added.push_back(new_val);
-                }
-            }
-            database[table_name].total_Table.push_back(total_added);
-           
-            
-        }
-        cout << "Added " << N << " rows to " << table_name << " from position " <<  K << " to " << K + N - 1 << "\n";
-  
-    } else {
-        cout << "Error during INSERT: " << table_name << " does not name a table in the database " << "\n";
-    }
+
 }
 
 void print(){
-    string space;
     string table_name;
     size_t N;
     string col_name;
@@ -166,14 +124,14 @@ void print(){
     int val3;
     string type;
     
-    cin >> space >> table_name; // get in table name 
+    cin >> table_name; // get in table name 
     cin >> N; // number of columns 
     auto it = database.find(table_name);
     bool bst = false;
     bool hash = false;
     size_t total = 0; 
 
-
+    
 
 
 
@@ -679,7 +637,6 @@ void print(){
 }
 
 void delete_func(){
-    string space;
     string tablename;
     string WHERE;
     string col_name;
@@ -690,11 +647,14 @@ void delete_func(){
     string val3;
     string type; 
     int total_deleted = 0; 
-    cin >> space >> tablename;
+    cin >> tablename;
     cin >> WHERE;
     cin >> col_name;
     cin >> operation;
     auto it = database.find(tablename);
+    
+  
+
     if(it == database.end()){
         cout << "Error during DELETE: Cannot create already existing table " << tablename << "\n";
         return; 
@@ -859,10 +819,9 @@ void delete_func(){
 }
 
 void join() {
-    string space;
     string tablename1, tablename2, CAPS, colname1, colname2;
     size_t N;
-    cin >> space >> tablename1 >> CAPS >> tablename2 >> CAPS;
+    cin >> tablename1 >> CAPS >> tablename2 >> CAPS;
 
     auto found1 = database.find(tablename1);
     auto found2 = database.find(tablename2);
@@ -959,13 +918,12 @@ void join() {
 
 
 void generate(){
-    string space; 
     string tablename;
     string indextype;
     string CAPS;
     string colname;
 
-    cin >> space >> tablename;
+    cin >> tablename;
    
     cin >> indextype;
  
@@ -1085,7 +1043,7 @@ int main(int argc, char** argv) {
 
             else if (command == "INSERT") {
          
-                cin >> temp;
+           
                 insert();
             }
             
@@ -1099,7 +1057,7 @@ int main(int argc, char** argv) {
                 
             }
             else if (command == "PRINT") {
-                cin >> temp;
+     
                 print();
             }
             
@@ -1122,4 +1080,3 @@ int main(int argc, char** argv) {
         return 0;
     }
     
-
