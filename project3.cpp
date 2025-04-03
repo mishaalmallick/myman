@@ -136,7 +136,7 @@ void insert(){
             
         }
         cout << "Added " << N << " rows to " << table_name << " from position " <<  K << " to " << K + N - 1 << "\n";
-        getline(cin, comment);
+        getline(cin, table_name);
   
     } else {
         cout << "Error during INSERT: " << table_name << " does not name a table in the database " << "\n";
