@@ -140,6 +140,7 @@ void insert(){
   
     } else {
         cout << "Error during INSERT: " << table_name << " does not name a table in the database " << "\n";
+        return;
     }
 }
 
