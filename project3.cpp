@@ -95,7 +95,8 @@ void insert(){
     string ROWS;
 
     cin >> table_name; // get table name
-    cout << table_name << "x 3 " << endl;
+    cin >> again >> endl;
+    cout << again << "x 3 " << endl;
     cin >> N; // get number of rows 
     cin >> ROWS; 
     
