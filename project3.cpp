@@ -56,11 +56,7 @@ void create(){
         }
         cout << "created" << "\n";
         database.emplace(table_name, std::move(new_table)); // add the table!
-        database[table_name].total_Table.reserve(N);
-        database[table_name].col_types.reserve(N);
-        database[table_name].col_names.reserve(N);
-        database[table_name].column_numbers.reserve(N);
-        database[table_name].hash.reserve(N);
+
 
     } else {
         cout << "Error during CREATE: Cannot create already existing table " <<  table_name << "\n";
