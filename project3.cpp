@@ -19,8 +19,8 @@ class Table {
     vector<string> col_types; 
     unordered_map<Field, vector<size_t>> hash;
     map<Field, vector<size_t>, less<Field>> bst;
-    string bstcol;
-    string hashcol; 
+    string bstcol = " ";
+    string hashcol = " "; 
     Table() {};
 };
 
@@ -85,6 +85,7 @@ void removeTable(const string &TableName){
         cout << "Table " << TableName << " removed" << "\n";
     } else {
         cout << "Error during REMOVE: " << TableName << " does not name a table in the database " << "\n";
+        return;
     }
 }
 
@@ -691,6 +692,10 @@ void delete_func(){
     cin >> col_name;
     cin >> operation;
     auto it = database.find(tablename);
+    for(size_t i = 0; i < database[tablename].col_names.size(); i++){
+        cout << database[tablename].col_names[i] << endl;
+    }
+
     if(it == database.end()){
         cout << "Error during DELETE: Cannot create already existing table " << tablename << "\n";
         return; 
