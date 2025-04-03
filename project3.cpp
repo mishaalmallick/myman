@@ -26,6 +26,31 @@ class Table {
 
 bool quietMode = false;
 unordered_map<string, Table> database; //total Tables 
+void get_opt(int argc, char ** argv);
+
+//"Create" function
+void create();
+
+void quit();
+
+//"Insert Into" function
+void insert();
+
+void removeTable(const string &TableName);
+
+//"Delete From"
+void delete_func();
+
+//"Print"
+void print();
+
+//"Generate For"
+void generate();
+
+
+//"Join"
+void join();
+
 int main(int argc, char** argv) {
         std::ios_base::sync_with_stdio(false);  
         get_opt(argc, argv);
