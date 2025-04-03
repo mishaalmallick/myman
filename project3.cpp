@@ -230,11 +230,11 @@ void insert(){
             
         }
         cout << "Added " << N << " rows to " << table_name << " from position " <<  K << " to " << K + N - 1 << "\n";
-        getline(cin, table_name);
+        
   
     } else {
         cout << "Error during INSERT: " << table_name << " does not name a table in the database " << "\n";
-        exit(0);
+        return;
     }
 }
 
@@ -1110,7 +1110,7 @@ void generate(){
         }
   
 
-        cout << "Generated " << indextype << " index for table " << tablename << " on column " << colname << ". with " << database[tablename].hash.size() << " distinct keys " << "\n";
+        cout << "Generated " << indextype << " index for table " << tablename << " on column " << colname << ", with " << database[tablename].hash.size() << " distinct keys " << "\n";
         
     }
 
