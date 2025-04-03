@@ -98,6 +98,7 @@ void insert() {
     
     cin >> table_name; 
     cin >> N; // Read the number of rows
+    cin >> ROWS;
 
     auto it = database.find(table_name);
     if (it != database.end()) {
@@ -165,7 +166,7 @@ void print(){
     
     cin >> table_name; // get in table name 
     cin >> N; // number of columns 
-    cin >> ROWS; 
+
     auto it = database.find(table_name);
     bool bst = false;
     bool hash = false;
